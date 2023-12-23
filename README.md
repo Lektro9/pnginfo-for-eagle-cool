@@ -18,6 +18,13 @@ This repository contains a plugin for Eagle.Cool UI (version 4 and upwards). It 
 
 ![Importing Local Project](./docs/01.JPG)
 
+5. **Choose images**: Just select how many images you would like to scan for metadata (I tried ~1000 and it took about 30 seconds)
+6. **Scan!**: Open plugin menu and press on the icon - if everything went well you should only see a window flashing, otherwise it tells you which images were problematic.
+
+![Importing Local Project](./docs/02.JPG)
+
+7. **Read your generations:**: You should now see your generation parameters in the notes field.
+
 ### Future Updates
 
 - **Official Plugin Store**: In the future, you'll be able to download this directly from the official plugin store (not yet published, apologies for the inconvenience).
