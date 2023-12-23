@@ -1,0 +1,16 @@
+{
+  "id": "937f5dc7-205f-44c1-bc5e-ecf1b003b7d4",
+  "version": "1.0.0",
+  "platform": "all",
+  "arch": "all",
+  "name": "A1111-Pnginfo",
+  "logo": "/logo.png",
+  "keywords": [],
+  "devTools": false,
+  "main": {
+    "serviceMode": true,
+    "url": "index.html",
+    "width": 640,
+    "height": 480
+  }
+}
