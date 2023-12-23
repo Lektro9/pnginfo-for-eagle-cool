@@ -28,6 +28,7 @@ This repository contains a plugin for Eagle.Cool UI (version 4 and upwards). It 
 ### Future Updates
 
 - **Official Plugin Store**: In the future, you'll be able to download this directly from the official plugin store (not yet published, apologies for the inconvenience).
+- **Automatically scan new images**: When the api of Eagle.cool gets updated this plugin will hopefully be able to scan any new image when it's getting imported.
 
 ## Installation
 
