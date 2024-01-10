@@ -1,25 +1,26 @@
 # PNGInfo for Eagle.Cool
 
-This repository contains a plugin for Eagle.Cool UI (version 4 and upwards). It allows the plugin to read metadata from PNG files, specifically in the automatic1111 format.
+This repository contains a plugin for Eagle.Cool UI (version 4 and upwards). It allows the plugin to read metadata from PNG files.
 
 ## Features
 
 - Reads metadata from PNG files.
-- Supports only automatic1111 (https://github.com/AUTOMATIC1111/stable-diffusion-webui) format.
+- Supports automatic1111(https://github.com/AUTOMATIC1111/stable-diffusion-webui)/midjourney format.
 
 ## How to Use
 
 ### Initial Setup
 
 1. **Clone the repository**: Get a local copy of the code.
-2. **Open Eagle.Cool**: Launch the application.
-3. **Access Plugins Menu**: Navigate to the plugins section.
-4. **Import Local Project**: Under 'Developer Options', select 'Import Local Project'.
+2. **Install dependencies**: run `npm install` in root (install node first if you do not have it: https://nodejs.org/en)
+3. **Open Eagle.Cool**: Launch the application.
+4. **Access Plugins Menu**: Navigate to the plugins section.
+5. **Import Local Project**: Under 'Developer Options', select 'Import Local Project'.
 
 ![Importing Local Project](./docs/01.JPG)
 
-5. **Choose images**: Just select how many images you would like to scan for metadata (I tried ~1000 and it took about 30 seconds)
-6. **Scan!**: Open plugin menu and press on the icon - if everything went well you should only see a window flashing, otherwise it tells you which images were problematic.
+6. **Choose images**: Just select how many images you would like to scan for metadata (I tried ~1000 and it took about 30 seconds)
+7. **Scan!**: Open plugin menu and press on the icon - if everything went well you should only see a window flashing, otherwise it tells you which images were problematic.
 
 ![Importing Local Project](./docs/02.JPG)
 
