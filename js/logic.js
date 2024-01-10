@@ -1,19 +1,28 @@
 const exifr = require("exifr");
 
+// Stable Diffusion: parameters
+// Midjourney: Description
+// add your property key in this array
+const parameterProps = ["parameters", "Description"];
+
 const setAnnotationForA1111Images = async () => {
   let items = await eagle.item.getSelected();
   for (let index = 0; index < items.length; index++) {
     const item = items[index];
     if (item.ext.toLowerCase() !== "png") continue;
     const output = await exifr.parse(item.filePath);
+    console.log(output);
     if (item.annotation) {
       createListEntry(item.name);
       continue;
     }
-    // Modify attributes
-    if (!output?.parameters) continue;
 
-    item.annotation = output.parameters;
+    const propKey = findFirstExistingProperty(output, parameterProps);
+
+    //skip item if none of the props where found (means there are no parameters in the metadata)
+    if (!propKey) continue;
+
+    item.annotation = output[propKey];
     // Save modifications
     await item.save();
   }
@@ -46,6 +55,15 @@ const userConfirm = async () => {
     });
   });
 };
+
+function findFirstExistingProperty(object, propertyNames) {
+  for (const propertyName of propertyNames) {
+    if (object?.hasOwnProperty(propertyName)) {
+      return propertyName;
+    }
+  }
+  return null; // Return null if none of the properties exist in the object
+}
 
 module.exports = {
   setAnnotationForA1111Images,

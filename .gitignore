@@ -1,3 +1,6 @@
+# Eagle artifacts
+*.eagleplugin
+
 # Logs
 logs
 *.log

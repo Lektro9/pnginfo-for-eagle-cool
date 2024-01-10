@@ -61,7 +61,7 @@ describe("Plugin Run Tests", () => {
     expect(exifr.parse).toHaveBeenCalledTimes(1);
   });
 
-  it("parameters got saved into annotation prop of item", async () => {
+  it("should save parameters of stable diffusion image into annotation prop of item", async () => {
     let testItem = {
       ext: "png",
       filePath: "path/to/file2.png",
@@ -73,6 +73,20 @@ describe("Plugin Run Tests", () => {
     await setAnnotationForA1111Images();
     // assertions for same string in item prop
     expect(testItem.annotation).toBe(mockedOutput.parameters);
+  });
+
+  it("should save parameters of midjourney image into annotation prop of item", async () => {
+    let testItem = {
+      ext: "png",
+      filePath: "path/to/file2.png",
+      save: jest.fn(),
+    };
+    const mockedOutput = { Description: "my midjourney gen info" };
+    eagle.item.getSelected.mockResolvedValue([testItem]);
+    exifr.parse.mockResolvedValue(mockedOutput);
+    await setAnnotationForA1111Images();
+    // assertions for same string in item prop
+    expect(testItem.annotation).toBe(mockedOutput.Description);
   });
 
   it("should create list entry if item already has an annotation", async () => {
