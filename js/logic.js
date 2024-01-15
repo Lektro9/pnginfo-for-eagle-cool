@@ -3,28 +3,36 @@ const exifr = require("exifr");
 // Stable Diffusion: parameters
 // Midjourney: Description
 // add your property key in this array
-const parameterProps = ["parameters", "Description"];
+const parameterProps = ["prompt", "parameters", "Description"];
 
 const setAnnotationForA1111Images = async () => {
   let items = await eagle.item.getSelected();
   for (let index = 0; index < items.length; index++) {
     const item = items[index];
+
+    // guards
     if (item.ext.toLowerCase() !== "png") continue;
-    const output = await exifr.parse(item.filePath);
-    console.log(output);
     if (item.annotation) {
       createListEntry(item.name);
       continue;
     }
+
+    // check for stealth png info in alpha
+    const alphaParams = await readInfoFromImageStealth(item.filePath);
+    if (alphaParams) {
+      await saveGenerationParamsToAnnotation(alphaParams, item);
+      continue;
+    }
+
+    // check for 'normal' metadata png info
+    const output = await exifr.parse(item.filePath);
 
     const propKey = findFirstExistingProperty(output, parameterProps);
 
     //skip item if none of the props where found (means there are no parameters in the metadata)
     if (!propKey) continue;
 
-    item.annotation = output[propKey];
-    // Save modifications
-    await item.save();
+    await saveGenerationParamsToAnnotation(output[propKey], item);
   }
 
   if (itemNotChanged()) {
@@ -32,6 +40,12 @@ const setAnnotationForA1111Images = async () => {
   }
 
   window.close();
+};
+
+const saveGenerationParamsToAnnotation = async (generationParams, item) => {
+  item.annotation = generationParams;
+  // Save modifications
+  await item.save();
 };
 
 const itemNotChanged = () => {
